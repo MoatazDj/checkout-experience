@@ -2,6 +2,7 @@ class App extends React.Component {
   constructor(props){
         super(props);
         this.state = {
+            form: 1
             name : "",
             email : "",
             password : "",
@@ -15,6 +16,22 @@ class App extends React.Component {
             zipCode : ""
         };
     }
+    next() {
+
+      this.setState({count:this.state.count +1})
+      console.log(this.state.count +1)
+         
+  }
+  render(){
+      if(this.state.count===0){
+          return <F1 next={this.next.bind(this)}/>
+      }else if(this.state.count===1){
+          return <F2 next={this.next.bind(this)}/>
+      }
+      else if(this.state.count===2){
+          return <F3 next={this.next.bind(this)}/>
+      }
+  }
 }
 
 class F1 extends React.Component {
@@ -39,9 +56,11 @@ class F1 extends React.Component {
           <input type="text" name="password" />
         </label>
         <br />
+        <button type="button" onClick = {this.props.next}>Next</button>
       </form>
     );
   }
+  
 }
 class F2 extends React.Component {
   render() {
@@ -70,6 +89,7 @@ class F2 extends React.Component {
           <input type="text" name="zip code" />
         </label>
         <br />
+        <button type="button" onClick = {this.props.next}>Next</button>
       </form>
       
     );
@@ -99,6 +119,7 @@ class F3 extends React.Component {
           <input type="text" name="billing zip code" />
         </label>
         <br />
+        <button type="button" onClick = {this.props.next}>Next</button>
       </form>
     );
   }
